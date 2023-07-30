@@ -1,0 +1,652 @@
+{
+  "openapi": "3.0.0",
+  "x-stoplight": {
+    "id": "nmj6gnazzc55y"
+  },
+  "info": {
+    "title": "management-system",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/visitor/new": {
+      "post": {
+        "summary": "new-visitor",
+        "operationId": "post-visitor-new",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "description": "",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonDetails"
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "update-visitor",
+        "operationId": "patch-visitor-new",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonDetails"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/visitor/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "get-visitor",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonDetails"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-visitor-id"
+      }
+    },
+    "/visitor/all": {
+      "get": {
+        "summary": "get-visitors-list",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PersonDetails",
+                    "x-stoplight": {
+                      "id": "zkm0zbibt35gy"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-visitor-all"
+      }
+    },
+    "/material/new": {
+      "post": {
+        "summary": "new-material",
+        "operationId": "post-material-new",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MaterialDetails"
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "update-material",
+        "operationId": "patch-material-new",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MaterialDetails"
+              }
+            }
+          },
+          "description": ""
+        }
+      }
+    },
+    "/material/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "get-material",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaterialDetails"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-material-id"
+      }
+    },
+    "/material/all": {
+      "get": {
+        "summary": "get-materials-list",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MaterialDetails",
+                    "x-stoplight": {
+                      "id": "yeh7fx63k80fl"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-material-all"
+      }
+    },
+    "/employee/new": {
+      "post": {
+        "summary": "",
+        "operationId": "post-employee-new",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "x-stoplight": {
+          "id": "xx1odtxcm76tn"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeDetails"
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "employee-out-of-office",
+        "operationId": "patch-employee-new",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "x-stoplight": {
+          "id": "0atdav918wdke"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeDetails"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/employee/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeDetails"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-employee-id",
+        "x-stoplight": {
+          "id": "lvvdunc7tjoz6"
+        }
+      }
+    },
+    "/employee/all": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeeDetails"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-employee-all",
+        "x-stoplight": {
+          "id": "exyr90k7chyez"
+        }
+      }
+    },
+    "/user/register": {
+      "parameters": [],
+      "post": {
+        "summary": "post-user",
+        "operationId": "post-user-register",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "x-stoplight": {
+          "id": "vsvm5oh4u44be"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationDetails"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "get-user-login",
+        "x-stoplight": {
+          "id": "kf6s8qxd0ryq0"
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "userName"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "password"
+          }
+        ]
+      }
+    },
+    "/user/all": {
+      "get": {
+        "summary": "Get User List",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RegistrationDetails"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-user-all",
+        "x-stoplight": {
+          "id": "3r7x2a0j0oqli"
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MaterialDetails": {
+        "title": "MaterialDetails",
+        "x-stoplight": {
+          "id": "5yfifr0ps8rm9"
+        },
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "i03a15exje7h0"
+            }
+          },
+          "vehicleNumber": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "u0len8p83fj0t"
+            }
+          },
+          "driverName": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "a41s611rxikek"
+            }
+          },
+          "materialDescription": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "vfuv4cb934l9f"
+            }
+          },
+          "materialDocument": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "p2mak82dfdtmc"
+            }
+          },
+          "inTime": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "uobadsnnn1jyt"
+            }
+          },
+          "outTime": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "9lwlev9ut4yts"
+            }
+          },
+          "date": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "iflt8z7ypgc63"
+            }
+          },
+          "photo": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "hem30hjpc1ci6"
+            }
+          }
+        }
+      },
+      "PersonDetails": {
+        "title": "PersonDetails",
+        "x-stoplight": {
+          "id": "w3ziyyo8frr3p"
+        },
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "drtj42nr2uw6k"
+            }
+          },
+          "name": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "jd45kjczd71g9"
+            }
+          },
+          "mobileNumber": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "ih4qiyw202gnf"
+            }
+          },
+          "reason": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "v9181t1x27so5"
+            }
+          },
+          "whomToMeet": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "8e24m9swxu8my"
+            }
+          },
+          "photo": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "q17709a7ruqwu"
+            }
+          },
+          "inTime": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "t32cu9i9rru21"
+            }
+          },
+          "outTime": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "enp0cctx3vgrt"
+            }
+          },
+          "date": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "l0nhkikkm5v9z"
+            }
+          }
+        }
+      },
+      "EmployeeDetails": {
+        "title": "EmployeeDetails",
+        "x-stoplight": {
+          "id": "9o8enkti7gjou"
+        },
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "ix00dogn49ue2"
+            }
+          },
+          "name": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "ya0fbey9qsysc"
+            }
+          },
+          "reason": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "uv8fjwrdt07ni"
+            }
+          },
+          "date": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "6f88ubm1a6fyj"
+            }
+          },
+          "outTime": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "mlta9leexsop3"
+            }
+          },
+          "inTime": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "g2h6798cfmzp6"
+            }
+          },
+          "mobileNumber": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "nrqtb3zdky29e"
+            }
+          },
+          "photo": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "bazd7snuwc1df"
+            }
+          }
+        }
+      },
+      "RegistrationDetails": {
+        "title": "RegistrationDetails",
+        "x-stoplight": {
+          "id": "aa71t8z23jmr6"
+        },
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "jn3dd7zfkfrpr"
+            }
+          },
+          "lastName": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "w5mxs19t7i2de"
+            }
+          },
+          "email": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "wf5q77tsy8zs1"
+            }
+          },
+          "mobile": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "h0zgdo3yrp7nr"
+            }
+          },
+          "password": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "jun6uefsbcbli"
+            }
+          },
+          "blocked": {
+            "type": "boolean",
+            "x-stoplight": {
+              "id": "akj4he42n51d9"
+            }
+          },
+          "active": {
+            "type": "boolean",
+            "x-stoplight": {
+              "id": "lxjqws5fu4egm"
+            }
+          },
+          "userType": {
+            "x-stoplight": {
+              "id": "kzfeapq6qzqew"
+            },
+            "enum": [
+              "ADMIN",
+              "USER"
+            ]
+          },
+          "createOn": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "8in54tns8fqgm"
+            }
+          }
+        }
+      },
+      "LoginDetails": {
+        "title": "LoginDetails",
+        "x-stoplight": {
+          "id": "ep870edl1lu6f"
+        },
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "8v1hnpso7fm0i"
+            }
+          }
+        }
+      }
+    }
+  }
+}
