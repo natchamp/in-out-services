@@ -83,6 +83,15 @@
 			<artifactId>modelmapper</artifactId>
 			<version>3.1.1</version>
 		</dependency>
+
+		<!-- Whatsapp Depe  -->
+		<!-- https://mvnrepository.com/artifact/com.twilio.sdk/twilio -->
+		<dependency>
+			<groupId>com.twilio.sdk</groupId>
+			<artifactId>twilio</artifactId>
+			<version>9.9.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

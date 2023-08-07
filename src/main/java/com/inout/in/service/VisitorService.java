@@ -20,6 +20,9 @@ public class VisitorService implements IVisitorService{
     @Autowired
     private VisitorRepository repository;
 
+    @Autowired
+    private WhatsAppMsgService whatsAppMsgService;
+
     private Logger log = LoggerFactory.getLogger(VisitorService.class);
 
     @Override
@@ -62,7 +65,13 @@ public class VisitorService implements IVisitorService{
     public void createVisitor(PersonDetails personDetails) {
         VisitorInfo visitorInfo = null;
         visitorInfo = VisitorMapper.getVisitorInfoDTO(personDetails);
+        visitorInfo.setInTime(LocalDateTime.now().toString());
         repository.save(visitorInfo);
+
+        //---------------whatsapp logic-------------
+        whatsAppMsgService.sendWhatsappMessage(personDetails.getWhomToMeet(), personDetails.getName());
+
+        //----------------------------------
         log.info("Visitor Added Successfully.....(Service)");
     }
 

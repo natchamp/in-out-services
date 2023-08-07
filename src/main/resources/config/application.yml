@@ -29,9 +29,13 @@ spring:
     #url: jdbc:postgresql://localhost:5432/milk_store?createDatabaseIfNotExist=true&&relaxAutoCommit=true&useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
     #username: postgres
     driverclassname: com.mysql.cj.jdbc.Driver
+
     url: jdbc:mysql://localhost:3308/in-out #?createDatabaseIfNotExist=true&&relaxAutoCommit=true&useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
     password: Rohit123@
+    #url: jdbc:mysql://in-out-instance.coopipqh8oi0.ap-south-1.rds.amazonaws.com:3306/in-out #?createDatabaseIfNotExist=true&&relaxAutoCommit=true&useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+    #username: admin
+    #password: Rohit123
     hikari:
       poolName: JPAHikariCP
       auto-commit: false
