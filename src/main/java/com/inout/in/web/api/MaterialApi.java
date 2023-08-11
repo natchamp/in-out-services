@@ -88,13 +88,13 @@ public interface MaterialApi {
             produces = { "application/json" }
     )
     default ResponseEntity<MaterialDetails> _getMaterialId(
-            @Parameter(name = "id", description = "", required = true) @PathVariable("id") String id
+            @Parameter(name = "id", description = "", required = true) @PathVariable("id") Long id
     ) {
         return getMaterialId(id);
     }
 
     // Override this method
-    default  ResponseEntity<MaterialDetails> getMaterialId(String id) {
+    default  ResponseEntity<MaterialDetails> getMaterialId(Long id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

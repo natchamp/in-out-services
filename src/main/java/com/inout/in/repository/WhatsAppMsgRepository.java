@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface WhatsAppMsgRepository extends JpaRepository<WhatsAppMsgInfo, String> {
+public interface WhatsAppMsgRepository extends JpaRepository<WhatsAppMsgInfo, Long> {
     Optional<WhatsAppMsgInfo> findByName(String name);
 }

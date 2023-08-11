@@ -26,11 +26,10 @@ public class UserService implements IUserService{
     public boolean getUserLogin(String userName, String password){
         long count = repository.countByEmailAndPassword(userName, password);
         log.info("User Authenticated Successfully.....");
-        return count==1 ? true : false;
+        return count==1;
     }
 
     public RegistrationInfo getUserInfo(String userName){
-        RegistrationInfo info = repository.findByEmail(userName);
-        return info;
+        return repository.findByEmail(userName);
     }
 }

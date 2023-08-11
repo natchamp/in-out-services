@@ -91,13 +91,13 @@ public interface EmployeeApi {
             produces = { "application/json" }
     )
     default ResponseEntity<EmployeeDetails> _getEmployeeId(
-            @Parameter(name = "id", description = "", required = true) @PathVariable("id") String id
+            @Parameter(name = "id", description = "", required = true) @PathVariable("id") Long id
     ) {
         return getEmployeeId(id);
     }
 
     // Override this method
-    default  ResponseEntity<EmployeeDetails> getEmployeeId(String id) {
+    default  ResponseEntity<EmployeeDetails> getEmployeeId(Long id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

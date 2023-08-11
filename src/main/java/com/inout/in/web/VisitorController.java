@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +27,8 @@ public class VisitorController implements VisitorApi {
     private String topic = "arn:aws:sns:ap-south-1:428167789260:visitor-info";
 
     private Logger log = LoggerFactory.getLogger(VisitorController.class);
-    //@CrossOrigin
+
+    @Override
     public ResponseEntity<List<PersonDetails>> getVisitorAll() {
         /*SubscribeRequest request = new SubscribeRequest(topic,"email","rohitkhade7010@gmail.com");
         amazonSNSClient.subscribe(request);*/
@@ -48,17 +48,20 @@ public class VisitorController implements VisitorApi {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }*/
 
-    public ResponseEntity<VisitorInfo> getVisitorId(String id) {
+    @Override
+    public ResponseEntity<VisitorInfo> getVisitorId(Long id) {
         VisitorInfo visitorInfo = visitorService.getVisitor(id);
         return new ResponseEntity<>(visitorInfo, HttpStatus.OK);
     }
 
+    @Override
     public ResponseEntity<Void> patchVisitorNew(PersonDetails personDetails) {
         visitorService.patchVisitorNew(personDetails);
         log.info("Visitor Out Successfully...");
         return new ResponseEntity("Visitor Out Successfully...", HttpStatus.OK);
     }
 
+    @Override
     public ResponseEntity<Void> postVisitorNew(PersonDetails personDetails) {
         visitorService.createVisitor(personDetails);
         return new ResponseEntity<>(HttpStatus.OK);

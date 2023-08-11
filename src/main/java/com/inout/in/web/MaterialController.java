@@ -22,16 +22,19 @@ public class MaterialController implements MaterialApi {
 
     private Logger log = LoggerFactory.getLogger(MaterialController.class);
 
+    @Override
     public ResponseEntity<List<MaterialDetails>> getMaterialAll() {
         List<MaterialDetails> materialList = materialService.getMaterialAll();
         log.info("Material Details Returned Successfully.....");
         return new ResponseEntity<>(materialList, HttpStatus.OK);
     }
 
-    public ResponseEntity<MaterialDetails> getMaterialId(String id) {
+    @Override
+    public ResponseEntity<MaterialDetails> getMaterialId(Long id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
+    @Override
     public ResponseEntity<Void> patchMaterialNew(MaterialDetails materialDetails) {
         materialService.patchMaterialNew(materialDetails);
         log.info("Material Delivered Successfully...");
@@ -39,6 +42,7 @@ public class MaterialController implements MaterialApi {
 
     }
 
+    @Override
     public ResponseEntity<Void> postMaterialNew(MaterialDetails materialDetails) {
         materialService.postMaterialNew(materialDetails);
         log.info("Material Details Added Successfully.....");

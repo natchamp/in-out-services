@@ -2,9 +2,6 @@ package com.inout.in.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.persistence.Lob;
 
 @Data
 public class ProfileDetailsUI {

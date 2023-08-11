@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -34,11 +33,11 @@ public class VisitorService implements IVisitorService{
     }
 
     @Override
-    public PersonDetails getVisitorId(String id) {
+    public PersonDetails getVisitorId(Long id) {
         return null;
     }
 
-    public VisitorInfo getVisitor(String id) {
+    public VisitorInfo getVisitor(Long id) {
         Optional<VisitorInfo> visitorInfo = repository.findById(id);
         return visitorInfo.get();
     }
@@ -46,15 +45,10 @@ public class VisitorService implements IVisitorService{
     @Transactional
     @Override
     public void patchVisitorNew(PersonDetails personDetails) {
-        //int count = repository.updateOutTime(personDetails.getName(), personDetails.getInTime(), LocalDateTime.now().toString());
-//        if(count>0)
-//        {
-//            log.info("User Out Successfully.");
-//        }
 
         Optional<VisitorInfo> info = repository.findByNameAndInTime(personDetails.getName(), personDetails.getInTime())
                 .map(data ->{
-                    data.setOutTime(LocalDateTime.now().toString());
+                    data.setOutTime(personDetails.getOutTime());
                     return data;
                 });
 
@@ -63,9 +57,7 @@ public class VisitorService implements IVisitorService{
 
     @Override
     public void createVisitor(PersonDetails personDetails) {
-        VisitorInfo visitorInfo = null;
-        visitorInfo = VisitorMapper.getVisitorInfoDTO(personDetails);
-        visitorInfo.setInTime(LocalDateTime.now().toString());
+        VisitorInfo visitorInfo = VisitorMapper.getVisitorInfoDTO(personDetails);
         repository.save(visitorInfo);
 
         //---------------whatsapp logic-------------
@@ -75,13 +67,4 @@ public class VisitorService implements IVisitorService{
         log.info("Visitor Added Successfully.....(Service)");
     }
 
-  /*  public void createVisitor(MultipartFile file) {
-        VisitorInfo visitorInfo = null;
-        try {
-            visitorInfo = VisitorMapper.getVisitorInfoDTO(new PersonDetails(), file);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        repository.save(visitorInfo);
-    }*/
 }

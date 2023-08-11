@@ -1,8 +1,6 @@
 package com.inout.in.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-
 import javax.persistence.*;
 
 @Entity
@@ -11,7 +9,8 @@ import javax.persistence.*;
 public class EmployeeInfo {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "name")
     private String name;

@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<EmployeeInfo, String> {
+public interface EmployeeRepository extends JpaRepository<EmployeeInfo, Long> {
     Optional<EmployeeInfo> findByNameAndInTime(String name, String inTime);
 }

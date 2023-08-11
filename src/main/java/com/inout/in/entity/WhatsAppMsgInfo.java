@@ -2,10 +2,7 @@ package com.inout.in.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "whatsapp_details")
@@ -13,7 +10,8 @@ import javax.persistence.Table;
 public class WhatsAppMsgInfo {
 
     @Id
-    private String Id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id;
 
     @Column(name = "name")
     private String name;

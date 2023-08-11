@@ -23,6 +23,7 @@ public class UserController implements UserApi {
     private ValidationService validationService;
 
     private Logger log = LoggerFactory.getLogger(UserController.class);
+    @Override
     public ResponseEntity<Void> postUserRegister(RegistrationDetails registrationDetails) {
 
         if(!validationService.isEmailAvailable(registrationDetails.getEmail()))
@@ -36,6 +37,7 @@ public class UserController implements UserApi {
 
     }
 
+    @Override
     public ResponseEntity<Void> getUserLogin(String userName, String password) {
 
        if(userService.getUserLogin(userName, password)) {

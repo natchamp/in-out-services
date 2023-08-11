@@ -1,6 +1,5 @@
 package com.inout.in.service;
 
-import com.inout.in.entity.EmployeeInfo;
 import com.inout.in.entity.MaterialInfo;
 import com.inout.in.generateddomain.service.dto.MaterialDetails;
 import com.inout.in.mapper.MaterialMapper;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -33,7 +31,7 @@ public class MaterialService implements IMaterialService{
         return materialList;
     }
 
-    public MaterialDetails getMaterialId(String id){
+    public MaterialDetails getMaterialId(Long id){
         return null;
     }
 
@@ -41,7 +39,7 @@ public class MaterialService implements IMaterialService{
     public void patchMaterialNew(MaterialDetails materialDetails){
         Optional<MaterialInfo> info = repository.findByDriverNameAndInTime(materialDetails.getDriverName(), materialDetails.getInTime())
                 .map(data ->{
-                    data.setOutTime(LocalDateTime.now().toString());
+                    data.setOutTime(materialDetails.getOutTime());
                     return data;
                 });
 

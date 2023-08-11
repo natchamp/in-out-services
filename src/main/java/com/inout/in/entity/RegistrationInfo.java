@@ -2,10 +2,7 @@ package com.inout.in.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "user_info")
@@ -13,7 +10,8 @@ import javax.persistence.Table;
 public class RegistrationInfo {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "firstName")
     private String firstName;

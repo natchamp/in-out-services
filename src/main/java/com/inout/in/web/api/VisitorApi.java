@@ -129,13 +129,13 @@ public interface VisitorApi {
             produces = { "application/json" }
     )
     default ResponseEntity<VisitorInfo> _getVisitorId(
-            @Parameter(name = "id", description = "", required = true) @PathVariable("id") String id
+            @Parameter(name = "id", description = "", required = true) @PathVariable("id") Long id
     ) {
         return getVisitorId(id);
     }
 
     // Override this method
-    default  ResponseEntity<VisitorInfo> getVisitorId(String id) {
+    default  ResponseEntity<VisitorInfo> getVisitorId(Long id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

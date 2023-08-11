@@ -30,7 +30,7 @@ public class EmployeeController implements EmployeeApi {
     }
 
     @Override
-    public ResponseEntity<EmployeeDetails> getEmployeeId(String id) {
+    public ResponseEntity<EmployeeDetails> getEmployeeId(Long id) {
         EmployeeDetails employeeDetails = employeeService.getEmployeeId(id);
         log.info("Employee Data Returned Successfully...");
         return new ResponseEntity<>(employeeDetails, HttpStatus.OK);

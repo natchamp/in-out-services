@@ -9,7 +9,8 @@ import javax.persistence.*;
 public class MaterialInfo {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "vehicleNumber")
     private String vehicleNumber;

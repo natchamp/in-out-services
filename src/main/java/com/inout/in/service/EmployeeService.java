@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,7 +23,6 @@ public class EmployeeService implements IEmployeeService {
     private Logger log = LoggerFactory.getLogger(EmployeeService.class);
 
     public List<EmployeeDetails> getEmployeeAll(){
-        //List<EmployeeInfo> employeeInfoList = repository.findAll();
 
         List<EmployeeDetails> employeeList = repository.findAll().stream()
                 .map(data -> EmployeeMapper.getEmployeeDetails(data))
@@ -35,7 +33,7 @@ public class EmployeeService implements IEmployeeService {
         return employeeList;
     }
 
-    public EmployeeDetails getEmployeeId(String id){
+    public EmployeeDetails getEmployeeId(Long id){
         EmployeeInfo employeeInfo = repository.getReferenceById(id);
         log.info("Employee Date Fetched Successfully. Name - {}",employeeInfo.getName());
         return EmployeeMapper.getEmployeeDetails(employeeInfo);
@@ -45,7 +43,7 @@ public class EmployeeService implements IEmployeeService {
     public void patchEmployeeNew(EmployeeDetails employeeDetails){
         Optional<EmployeeInfo> info = repository.findByNameAndInTime(employeeDetails.getName(), employeeDetails.getInTime())
                 .map(data ->{
-                    data.setOutTime(LocalDateTime.now().toString());
+                    data.setOutTime(employeeDetails.getOutTime());
                     return data;
                 });
 

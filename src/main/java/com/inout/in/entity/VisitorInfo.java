@@ -9,7 +9,8 @@ import javax.persistence.*;
 @Data
 public class VisitorInfo {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -31,9 +32,6 @@ public class VisitorInfo {
 
     @Column(name = "date")
     private String date;
-
-   /* @Column(name = "image", length = 1000)
-    private byte[] image;*/
 
     @Lob
     @Column(name = "photo")

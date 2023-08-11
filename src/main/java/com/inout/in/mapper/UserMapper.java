@@ -6,10 +6,7 @@ import com.inout.in.generateddomain.service.dto.RegistrationDetails;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.sql.Time;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class UserMapper {
 
@@ -18,7 +15,7 @@ public class UserMapper {
         ModelMapper mapper = new ModelMapper();
         mapper.typeMap(RegistrationDetails.class, MaterialInfo.class);
         RegistrationInfo registrationInfo = mapper.map(registrationDetails,RegistrationInfo.class);
-        registrationInfo.setId(UUID.randomUUID().toString());
+        //registrationInfo.setId(UUID.randomUUID().toString());
         registrationInfo.setCreateOn(LocalDateTime.now().toString());
         registrationInfo.setUserType(RegistrationDetails.UserTypeEnum.USER.toString());
 

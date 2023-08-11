@@ -2,8 +2,8 @@ package com.inout.in.service.enums;
 
 public enum NotificationTopicEnum {
     ADMIN("admin"),
-    All("all"),
-    Manager("manager");
+    ALL("all"),
+    MANAGER("manager");
 
     public final String topic;
     private NotificationTopicEnum(String topic) {
