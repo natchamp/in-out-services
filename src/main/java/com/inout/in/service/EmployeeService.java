@@ -56,4 +56,20 @@ public class EmployeeService implements IEmployeeService {
         repository.save(employeeInfo);
         log.info("Employee Data Added Successfully....");
     }
+
+
+    @Transactional
+    public int deleteEmployee(EmployeeDetails employeeDetails){
+
+        int count = Math.toIntExact(repository.removeByNameAndInTime(employeeDetails.getName(), employeeDetails.getInTime()));
+        if(count>=1){
+            log.info("Employee Deleted Successfully.....");
+            return count;
+        }
+        else
+        {
+            log.info("Something Went Wrong..");
+        }
+        return 0;
+    }
 }

@@ -51,4 +51,15 @@ public class EmployeeController implements EmployeeApi {
         return new ResponseEntity<>(HttpStatus.OK);
 
     }
+
+    @Override
+    public ResponseEntity<Void> deleteEmployeeId(EmployeeDetails employeeDetails){
+        if(employeeService.deleteEmployee(employeeDetails) >=1)
+        {
+            return new ResponseEntity("Employee Deleted Successfully...", HttpStatus.OK);
+        }
+
+        return new ResponseEntity("Error While Deleting Employee...", HttpStatus.OK);
+
+    }
 }

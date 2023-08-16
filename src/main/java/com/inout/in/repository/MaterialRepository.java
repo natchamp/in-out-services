@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface MaterialRepository extends JpaRepository<MaterialInfo, Long>{
     Optional<MaterialInfo> findByDriverNameAndInTime(String driverName, String inTime);
+
+    Long removeByDriverNameAndInTime(String driverName, String inTime);
 }

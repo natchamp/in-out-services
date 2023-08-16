@@ -51,4 +51,18 @@ public class MaterialService implements IMaterialService{
         repository.save(materialInfo);
         log.info("Material Details Added Successfully.....(Service)");
     }
+
+    @Transactional
+    public int deleteMaterialId(MaterialDetails materialDetails){
+        int count = Math.toIntExact(repository.removeByDriverNameAndInTime(materialDetails.getDriverName(), materialDetails.getInTime()));
+        if(count>=1){
+            log.info("Material Deleted Successfully.....");
+            return count;
+        }
+        else
+        {
+            log.info("Something Went Wrong..");
+        }
+        return 0;
+    }
 }

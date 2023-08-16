@@ -49,4 +49,14 @@ public class MaterialController implements MaterialApi {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity<Void> deleteMaterialId(MaterialDetails materialDetails) {
+        if(materialService.deleteMaterialId(materialDetails) >=1)
+        {
+            return new ResponseEntity("Employee Deleted Successfully...", HttpStatus.OK);
+        }
+
+        return new ResponseEntity("Error While Deleting Employee...", HttpStatus.OK);
+    }
+
 }

@@ -67,4 +67,14 @@ public class VisitorController implements VisitorApi {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    public ResponseEntity<Void> deleteVisitor(PersonDetails personDetails) {
+
+        if(visitorService.deleteVisitor(personDetails) >=1)
+        {
+            return new ResponseEntity("Visitor Deleted Successfully...", HttpStatus.OK);
+        }
+
+        return new ResponseEntity("Error While Deleting Visitor...", HttpStatus.OK);
+    }
+
 }

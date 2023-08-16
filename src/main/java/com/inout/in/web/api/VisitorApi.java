@@ -26,6 +26,36 @@ public interface VisitorApi {
     }
 
     /**
+     * DELETE /visitor/{id} :
+     *
+     *
+     * @return OK (status code 200)
+     */
+    @Operation(
+            operationId = "deleteVisitorId",
+            summary = "",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "OK")
+            }
+    )
+    @RequestMapping(
+            method = RequestMethod.DELETE,
+            value = "/visitor/remove"
+    )
+    default ResponseEntity<Void> _deleteVisitor(
+            @Parameter(name = "PersonDetails", description = "") @Valid @RequestBody(required = false) PersonDetails personDetails
+    ) {
+        return deleteVisitor(personDetails);
+    }
+
+    // Override this method
+    default  ResponseEntity<Void> deleteVisitor(PersonDetails personDetails) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
      * GET /visitor/all : get-visitors-list
      *
      * @return OK (status code 200)

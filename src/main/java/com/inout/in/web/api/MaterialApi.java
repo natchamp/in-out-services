@@ -27,6 +27,38 @@ public interface MaterialApi {
     }
 
     /**
+     * DELETE /material/{id} :
+     *
+     * @param id  (required)
+     * @return OK (status code 200)
+     */
+    @Operation(
+            operationId = "deleteMaterialId",
+            summary = "",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "OK")
+            }
+    )
+    @RequestMapping(
+            method = RequestMethod.DELETE,
+            value = "/material/remove"
+    )
+    default ResponseEntity<Void> _deleteMaterialId(
+            @Parameter(name = "MaterialDetails", description = "") @Valid @RequestBody(required = false) MaterialDetails materialDetails
+    ) {
+        return deleteMaterialId(materialDetails);
+    }
+
+    // Override this method
+    default  ResponseEntity<Void> deleteMaterialId(MaterialDetails materialDetails) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+
+
+    /**
      * GET /material/all : get-materials-list
      *
      * @return OK (status code 200)

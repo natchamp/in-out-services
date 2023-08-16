@@ -28,6 +28,39 @@ public interface EmployeeApi {
     }
 
     /**
+     * DELETE /employee/{id} :
+     *
+     * @param id  (required)
+     * @return OK (status code 200)
+     */
+    @Operation(
+            operationId = "deleteEmployeeId",
+            summary = "",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "OK")
+            }
+    )
+    @RequestMapping(
+            method = RequestMethod.DELETE,
+            value = "/employee/remove"
+    )
+    default ResponseEntity<Void> _deleteEmployeeId(
+            @Parameter(name = "EmployeeDetails", description = "") @Valid @RequestBody(required = false) EmployeeDetails employeeDetails
+    ) {
+        return deleteEmployeeId(employeeDetails);
+    }
+
+    // Override this method
+    default  ResponseEntity<Void> deleteEmployeeId(EmployeeDetails employeeDetails) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+
+
+
+    /**
      * GET /employee/all : Your GET endpoint
      *
      * @return OK (status code 200)

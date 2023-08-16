@@ -13,4 +13,6 @@ public interface VisitorRepository extends JpaRepository<VisitorInfo, Long> {
 //    int updateOutTime(@Param("name") String name, @Param("inTime") String inTime, @Param("outTime") String outTime);
 
     Optional<VisitorInfo> findByNameAndInTime(String name, String inTime);
+
+    Long removeByNameAndInTime(String name, String inTime);
 }

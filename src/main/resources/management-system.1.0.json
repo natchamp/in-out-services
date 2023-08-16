@@ -79,6 +79,18 @@
           }
         },
         "operationId": "get-visitor-id"
+      },
+      "delete": {
+        "summary": "",
+        "operationId": "delete-visitor-id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "x-stoplight": {
+          "id": "ofqqqemg6v5we"
+        }
       }
     },
     "/visitor/all": {
@@ -172,6 +184,18 @@
           }
         },
         "operationId": "get-material-id"
+      },
+      "delete": {
+        "summary": "",
+        "operationId": "delete-material-id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "x-stoplight": {
+          "id": "fsbzpv7xt0ui4"
+        }
       }
     },
     "/material/all": {
@@ -272,6 +296,18 @@
         "operationId": "get-employee-id",
         "x-stoplight": {
           "id": "lvvdunc7tjoz6"
+        }
+      },
+      "delete": {
+        "summary": "",
+        "operationId": "delete-employee-id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "x-stoplight": {
+          "id": "l4aczfxabv4ce"
         }
       }
     },

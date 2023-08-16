@@ -1,6 +1,7 @@
 package com.inout.in.service;
 
 import com.inout.in.entity.VisitorInfo;
+import com.inout.in.generateddomain.service.dto.MaterialDetails;
 import com.inout.in.generateddomain.service.dto.PersonDetails;
 import com.inout.in.mapper.VisitorMapper;
 import com.inout.in.repository.VisitorRepository;
@@ -65,6 +66,21 @@ public class VisitorService implements IVisitorService{
 
         //----------------------------------
         log.info("Visitor Added Successfully.....(Service)");
+    }
+
+    @Transactional
+    public int deleteVisitor(PersonDetails personDetails){
+        log.info("Name : "+personDetails.getName()+" InTime : "+personDetails.getInTime());
+        int count = Math.toIntExact(repository.removeByNameAndInTime(personDetails.getName(), personDetails.getInTime()));
+        if(count>=1){
+            log.info("Visitor Deleted Successfully.....");
+            return count;
+        }
+        else
+        {
+            log.info("Something Went Wrong..");
+        }
+        return 0;
     }
 
 }

@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface EmployeeRepository extends JpaRepository<EmployeeInfo, Long> {
     Optional<EmployeeInfo> findByNameAndInTime(String name, String inTime);
+
+    Long removeByNameAndInTime(String name, String inTime);
 }
