@@ -21,6 +21,7 @@ public class MaterialInfo {
     @Column(name = "materialDescription")
     private String materialDescription;
 
+    @Lob
     @Column(name = "materialDocument")
     private String materialDocument;
 

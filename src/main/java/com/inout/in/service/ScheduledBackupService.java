@@ -41,7 +41,7 @@ public class ScheduledBackupService {
     //String backupFileName = "backup"+new Date().getTime()+".sql";
     String backupFileName = "backup.sql";
 
-    @Scheduled(cron = "10 41 14 * * *") // Run daily at midnight
+    @Scheduled(cron = "0 0 0 * * *") // Run daily at midnight
     public void performDatabaseBackup() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
         String dbHost = "localhost";
@@ -52,7 +52,7 @@ public class ScheduledBackupService {
         String dumpExe = "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump.exe";
         String dumpSavePath = "E:\\Swiatlotech.in\\";
         String fileName = "backup.sql";
-        Backupdbtosql(dbHost, dbPort, dbUser, dbPass, dbName, dumpExe, dumpSavePath, fileName);
+        //Backupdbtosql(dbHost, dbPort, dbUser, dbPass, dbName, dumpExe, dumpSavePath, fileName);
     }
 
     public void Backupdbtosql(String host,String port,String user,String password,String dbName,String dumpExe,String dumpSavePath,String fileName){
