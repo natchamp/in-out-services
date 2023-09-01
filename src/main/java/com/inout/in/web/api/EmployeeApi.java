@@ -101,6 +101,89 @@ public interface EmployeeApi {
 
     }
 
+    /**
+     * GET /employee/latestid : Your GET endpoint
+     *
+     * @return OK (status code 200)
+     */
+    @Operation(
+            operationId = "getEmployeeLatestId",
+            summary = "Your GET endpoint",
+            tags = {  },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "OK", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = EmployeeDetails.class))
+                    })
+            }
+    )
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/employee/latestid",
+            produces = { "application/json" }
+    )
+    default ResponseEntity<String> _getEmployeeLatestId(
+
+    ) {
+        return getEmployeeLatestId();
+    }
+
+    // Override this method
+    default  ResponseEntity<String> getEmployeeLatestId() {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"date\" : \"date\", \"inTime\" : \"inTime\", \"reason\" : \"reason\", \"image\" : \"image\", \"mobileNumber\" : \"mobileNumber\", \"name\" : \"name\", \"photo\" : \"photo\", \"id\" : \"id\", \"outTime\" : \"outTime\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * GET /employee/latest : Your GET endpoint
+     *
+     * @return OK (status code 200)
+     */
+    @Operation(
+            operationId = "getEmployeeAllLatest",
+            summary = "Your GET endpoint",
+            tags = {  },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "OK", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = EmployeeDetails.class))
+                    })
+            }
+    )
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/employee/latest",
+            produces = { "application/json" }
+    )
+    default ResponseEntity<List<EmployeeDetails>> _getEmployeeAllLatest(
+
+    ) {
+        return getEmployeeAllLatest();
+    }
+
+    // Override this method
+    default  ResponseEntity<List<EmployeeDetails>> getEmployeeAllLatest() {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"date\" : \"date\", \"inTime\" : \"inTime\", \"reason\" : \"reason\", \"image\" : \"image\", \"mobileNumber\" : \"mobileNumber\", \"name\" : \"name\", \"photo\" : \"photo\", \"id\" : \"id\", \"outTime\" : \"outTime\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
 
     /**
      * GET /employee/{id} : Your GET endpoint

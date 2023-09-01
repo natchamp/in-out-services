@@ -44,6 +44,22 @@ public class VisitorController implements VisitorApi {
 
     }
 
+    @Override
+    public ResponseEntity<List<PersonDetails>> getVisitorLatest() {
+        List<PersonDetails> visitorList = visitorService.getVisitorLatest();
+        log.info("Visitor List Returned Successfully.....");
+        return new ResponseEntity<>(visitorList, HttpStatus.OK);
+
+    }
+
+    @Override
+    public ResponseEntity<String> getVisitorLatestId() {
+        int id = visitorService.getVisitorLatestId();
+        log.info("Visitor ID : "+id);
+        return new ResponseEntity<>(String.valueOf(id), HttpStatus.OK);
+
+    }
+
     /*public ResponseEntity<PersonDetails> getVisitorId(String id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }*/

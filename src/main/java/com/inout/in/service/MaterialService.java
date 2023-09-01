@@ -31,6 +31,20 @@ public class MaterialService implements IMaterialService{
         return materialList;
     }
 
+    public List<MaterialDetails> getMaterialLatest(){
+        List<MaterialDetails> materialList = repository.findTop30ByOrderByIdDesc().stream()
+                .map(data -> MaterialMapper.getMaterialDetails(data))
+                .collect(Collectors.toList());
+        log.info("Material Details Fetched Successfully.....");
+        return materialList;
+    }
+
+    public int getMaterialLatestId(){
+        MaterialInfo info = repository.findTop1ByOrderByIdDesc();
+
+        return info.getId().intValue();
+    }
+
     public MaterialDetails getMaterialId(Long id){
         return null;
     }

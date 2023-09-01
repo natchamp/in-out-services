@@ -30,6 +30,20 @@ public class EmployeeController implements EmployeeApi {
     }
 
     @Override
+    public ResponseEntity<List<EmployeeDetails>> getEmployeeAllLatest() {
+        List<EmployeeDetails> employeeList = employeeService.getEmployeeAllLatest();
+        return new ResponseEntity<>(employeeList, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<String> getEmployeeLatestId(){
+        int id = employeeService.latestEmployeeId();
+        log.info("Employee Id : "+id);
+        return new ResponseEntity<>(String.valueOf(id), HttpStatus.OK);
+
+    }
+
+    @Override
     public ResponseEntity<EmployeeDetails> getEmployeeId(Long id) {
         EmployeeDetails employeeDetails = employeeService.getEmployeeId(id);
         log.info("Employee Data Returned Successfully...");

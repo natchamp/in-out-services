@@ -8,6 +8,10 @@ public interface IMaterialService {
 
     List<MaterialDetails> getMaterialAll();
 
+    List<MaterialDetails> getMaterialLatest();
+
+    int getMaterialLatestId();
+
     MaterialDetails getMaterialId(Long id);
 
     void patchMaterialNew(MaterialDetails materialDetails);

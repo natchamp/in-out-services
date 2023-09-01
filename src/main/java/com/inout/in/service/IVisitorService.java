@@ -7,6 +7,10 @@ import java.util.List;
 public interface IVisitorService {
     List<PersonDetails> getVisitorAll();
 
+    List<PersonDetails> getVisitorLatest();
+
+    int getVisitorLatestId();
+
     PersonDetails getVisitorId(Long id);
 
     void patchVisitorNew(PersonDetails personDetails);

@@ -33,6 +33,22 @@ public class EmployeeService implements IEmployeeService {
         return employeeList;
     }
 
+    public List<EmployeeDetails> getEmployeeAllLatest(){
+
+        List<EmployeeDetails> employeeList = repository.findTop30ByOrderByIdDesc().stream()
+                .map(data -> EmployeeMapper.getEmployeeDetails(data))
+                .collect(Collectors.toList());
+
+        log.info("Employee List Fetched Successfully.....");
+
+        return employeeList;
+    }
+
+    public int latestEmployeeId(){
+        EmployeeInfo info = repository.findTop1ByOrderByIdDesc();
+        return info.getId().intValue();
+    }
+
     public EmployeeDetails getEmployeeId(Long id){
         EmployeeInfo employeeInfo = repository.getReferenceById(id);
         log.info("Employee Date Fetched Successfully. Name - {}",employeeInfo.getName());

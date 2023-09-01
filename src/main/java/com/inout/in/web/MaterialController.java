@@ -30,6 +30,20 @@ public class MaterialController implements MaterialApi {
     }
 
     @Override
+    public ResponseEntity<List<MaterialDetails>> getMaterialLatest() {
+        List<MaterialDetails> materialList = materialService.getMaterialLatest();
+        log.info("Material Details Returned Successfully.....");
+        return new ResponseEntity<>(materialList, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<String> getMaterialLatestId() {
+        int id = materialService.getMaterialLatestId();
+        log.info("Material ID : "+id);
+        return new ResponseEntity<>(String.valueOf(id), HttpStatus.OK);
+    }
+
+    @Override
     public ResponseEntity<MaterialDetails> getMaterialId(Long id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }

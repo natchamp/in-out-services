@@ -8,9 +8,13 @@ public interface IEmployeeService {
 
     List<EmployeeDetails> getEmployeeAll();
 
+    List<EmployeeDetails> getEmployeeAllLatest();
+
     EmployeeDetails getEmployeeId(Long id);
 
     void patchEmployeeNew(EmployeeDetails employeeDetails);
 
     void postEmployeeNew(EmployeeDetails employeeDetails);
+
+    int latestEmployeeId();
 }

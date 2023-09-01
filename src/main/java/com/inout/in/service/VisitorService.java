@@ -34,6 +34,20 @@ public class VisitorService implements IVisitorService{
     }
 
     @Override
+    public List<PersonDetails> getVisitorLatest() {
+        List<PersonDetails> visitorList = repository.findTop30ByOrderByIdDesc().stream()
+                .map(data -> VisitorMapper.getPersonDetails(data))
+                .collect(Collectors.toList());
+        return  visitorList;
+    }
+
+    @Override
+    public int getVisitorLatestId(){
+        VisitorInfo info = repository.findTop1ByOrderByIdDesc();
+        return info.getId().intValue();
+    }
+
+    @Override
     public PersonDetails getVisitorId(Long id) {
         return null;
     }

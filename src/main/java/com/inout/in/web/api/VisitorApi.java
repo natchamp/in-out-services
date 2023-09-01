@@ -97,6 +97,87 @@ public interface VisitorApi {
 
 
     /**
+     * GET /visitor/latest : get-visitors-list
+     *
+     * @return OK (status code 200)
+     */
+    @Operation(
+            operationId = "getVisitorLatest",
+            summary = "get-visitors-list",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "OK", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = PersonDetails.class))
+                    })
+            }
+    )
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/visitor/latest",
+            produces = { "application/json" }
+    )
+    default ResponseEntity<List<PersonDetails>> _getVisitorLatest(
+
+    ) {
+        return getVisitorLatest();
+    }
+
+    // Override this method
+    default  ResponseEntity<List<PersonDetails>> getVisitorLatest() {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"inTime\" : \"inTime\", \"date\" : \"date\", \"reason\" : \"reason\", \"whomToMeet\" : \"whomToMeet\", \"mobileNumber\" : \"mobileNumber\", \"name\" : \"name\", \"photo\" : \"photo\", \"id\" : \"id\", \"outTime\" : \"outTime\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+    /**
+     * GET /visitor/latestid : get-visitors-list
+     *
+     * @return OK (status code 200)
+     */
+    @Operation(
+            operationId = "getVisitorLatestId",
+            summary = "get-visitors-list",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "OK", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = PersonDetails.class))
+                    })
+            }
+    )
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/visitor/latestid",
+            produces = { "application/json" }
+    )
+    default ResponseEntity<String> _getVisitorLatestId(
+
+    ) {
+        return getVisitorLatestId();
+    }
+
+    // Override this method
+    default  ResponseEntity<String> getVisitorLatestId() {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"inTime\" : \"inTime\", \"date\" : \"date\", \"reason\" : \"reason\", \"whomToMeet\" : \"whomToMeet\", \"mobileNumber\" : \"mobileNumber\", \"name\" : \"name\", \"photo\" : \"photo\", \"id\" : \"id\", \"outTime\" : \"outTime\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
      * GET /visitor/{id} : get-visitor
      *
      * @param id  (required)

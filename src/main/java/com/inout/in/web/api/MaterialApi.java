@@ -100,6 +100,88 @@ public interface MaterialApi {
 
 
     /**
+     * GET /material/latest : get-materials-list
+     *
+     * @return OK (status code 200)
+     */
+    @Operation(
+            operationId = "getMaterialLatest",
+            summary = "get-materials-list",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "OK", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = MaterialDetails.class))
+                    })
+            }
+    )
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/material/latest",
+            produces = { "application/json" }
+    )
+    default ResponseEntity<List<MaterialDetails>> _getMaterialLatest(
+
+    ) {
+        return getMaterialLatest();
+    }
+
+    // Override this method
+    default  ResponseEntity<List<MaterialDetails>> getMaterialLatest() {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"materialDocument\" : \"materialDocument\", \"inTime\" : \"inTime\", \"date\" : \"date\", \"vehicleNumber\" : \"vehicleNumber\", \"driverName\" : \"driverName\", \"id\" : \"id\", \"outTime\" : \"outTime\", \"materialDescription\" : \"materialDescription\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * GET /material/latestid : get-materials-list
+     *
+     * @return OK (status code 200)
+     */
+    @Operation(
+            operationId = "getMaterialLatestId",
+            summary = "get-materials-list",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "OK", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = MaterialDetails.class))
+                    })
+            }
+    )
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/material/latestid",
+            produces = { "application/json" }
+    )
+    default ResponseEntity<String> _getMaterialLatestId(
+
+    ) {
+        return getMaterialLatestId();
+    }
+
+    // Override this method
+    default  ResponseEntity<String> getMaterialLatestId() {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"materialDocument\" : \"materialDocument\", \"inTime\" : \"inTime\", \"date\" : \"date\", \"vehicleNumber\" : \"vehicleNumber\", \"driverName\" : \"driverName\", \"id\" : \"id\", \"outTime\" : \"outTime\", \"materialDescription\" : \"materialDescription\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
      * GET /material/{id} : get-material
      *
      * @param id  (required)
