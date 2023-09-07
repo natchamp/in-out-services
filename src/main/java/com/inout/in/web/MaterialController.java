@@ -1,5 +1,6 @@
 package com.inout.in.web;
 
+import com.inout.in.entity.ExitMaterialInfo;
 import com.inout.in.generateddomain.service.dto.MaterialDetails;
 import com.inout.in.service.MaterialService;
 import com.inout.in.web.api.MaterialApi;
@@ -67,10 +68,54 @@ public class MaterialController implements MaterialApi {
     public ResponseEntity<Void> deleteMaterialId(MaterialDetails materialDetails) {
         if(materialService.deleteMaterialId(materialDetails) >=1)
         {
-            return new ResponseEntity("Employee Deleted Successfully...", HttpStatus.OK);
+            return new ResponseEntity("Material Deleted Successfully...", HttpStatus.OK);
         }
 
-        return new ResponseEntity("Error While Deleting Employee...", HttpStatus.OK);
+        return new ResponseEntity("Error While Deleting Material...", HttpStatus.OK);
+    }
+
+    //==========Material Exit
+
+    @Override
+    public ResponseEntity<Void> deleteExitMaterialId(ExitMaterialInfo materialDetails) {
+        if(materialService.deleteExitMaterialId(materialDetails) >=1)
+        {
+            return new ResponseEntity("Exit Material Deleted Successfully...", HttpStatus.OK);
+        }
+
+        return new ResponseEntity("Error While Deleting Exit Material...", HttpStatus.OK);
+
+    }
+
+    @Override
+    public ResponseEntity<List<ExitMaterialInfo>> getExitMaterialLatest() {
+        List<ExitMaterialInfo> materialList = materialService.getExitMaterialLatest();
+        log.info("Latest Exit Material Details Returned Successfully.....");
+        return new ResponseEntity<>(materialList, HttpStatus.OK);
+
+    }
+
+    @Override
+    public ResponseEntity<Void> postExitMaterial(ExitMaterialInfo materialDetails) {
+        materialService.postExitMaterial(materialDetails);
+        log.info("Exit Material Details Added Successfully.....");
+        return new ResponseEntity<>(HttpStatus.OK);
+
+    }
+
+    @Override
+    public ResponseEntity<String> getExitMaterialLatestId() {
+        int id = materialService.getExitMaterialLatestId();
+        log.info("Exit Material ID : "+id);
+        return new ResponseEntity<>(String.valueOf(id), HttpStatus.OK);
+
+    }
+
+    @Override
+    public ResponseEntity<List<ExitMaterialInfo>> getExitMaterialAll() {
+        List<ExitMaterialInfo> materialList = materialService.getExitMaterialAll();
+        log.info("Exit Material Details Returned Successfully.....");
+        return new ResponseEntity<>(materialList, HttpStatus.OK);
     }
 
 }

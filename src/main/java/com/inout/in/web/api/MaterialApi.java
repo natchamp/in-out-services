@@ -1,5 +1,6 @@
 package com.inout.in.web.api;
 
+import com.inout.in.entity.ExitMaterialInfo;
 import com.inout.in.generateddomain.ApiUtil;
 import com.inout.in.generateddomain.service.dto.MaterialDetails;
 import io.swagger.v3.oas.annotations.Operation;
@@ -55,6 +56,41 @@ public interface MaterialApi {
 
     }
 
+    //-----------------------
+
+    /**
+     * DELETE /material/{id} :
+     *
+     * @param id  (required)
+     * @return OK (status code 200)
+     */
+    @Operation(
+            operationId = "deleteMaterialExitId",
+            summary = "",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "OK")
+            }
+    )
+    @RequestMapping(
+            method = RequestMethod.DELETE,
+            value = "/material/exitremove"
+    )
+    default ResponseEntity<Void> _deleteExitMaterialId(
+            @Parameter(name = "MaterialDetails", description = "") @Valid @RequestBody(required = false) ExitMaterialInfo materialDetails
+    ) {
+        return deleteExitMaterialId(materialDetails);
+    }
+
+    // Override this method
+    default  ResponseEntity<Void> deleteExitMaterialId(ExitMaterialInfo materialDetails) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+
+    //-------------------------
+
 
 
 
@@ -98,6 +134,49 @@ public interface MaterialApi {
 
     }
 
+    //======================
+    /**
+     * GET /material/exitall : get-materials-list
+     *
+     * @return OK (status code 200)
+     */
+    @Operation(
+            operationId = "getExitMaterialAll",
+            summary = "get-exit-materials-list",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "OK", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ExitMaterialInfo.class))
+                    })
+            }
+    )
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/material/exitall",
+            produces = { "application/json" }
+    )
+    default ResponseEntity<List<ExitMaterialInfo>> _getExitMaterialAll(
+
+    ) {
+        return getExitMaterialAll();
+    }
+
+    // Override this method
+    default  ResponseEntity<List<ExitMaterialInfo>> getExitMaterialAll() {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"materialDocument\" : \"materialDocument\", \"inTime\" : \"inTime\", \"date\" : \"date\", \"vehicleNumber\" : \"vehicleNumber\", \"driverName\" : \"driverName\", \"id\" : \"id\", \"outTime\" : \"outTime\", \"materialDescription\" : \"materialDescription\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+    //=================
+
 
     /**
      * GET /material/latest : get-materials-list
@@ -140,6 +219,51 @@ public interface MaterialApi {
     }
 
 
+    ///=======================
+
+    /**
+     * GET /material/latest : get-exit -materials-list
+     *
+     * @return OK (status code 200)
+     */
+    @Operation(
+            operationId = "getExitMaterialLatest",
+            summary = "get-exit-materials-list",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "OK", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ExitMaterialInfo.class))
+                    })
+            }
+    )
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/material/exitlatest",
+            produces = { "application/json" }
+    )
+    default ResponseEntity<List<ExitMaterialInfo>> _getExitMaterialLatest(
+
+    ) {
+        return getExitMaterialLatest();
+    }
+
+    // Override this method
+    default  ResponseEntity<List<ExitMaterialInfo>> getExitMaterialLatest() {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"materialDocument\" : \"materialDocument\", \"inTime\" : \"inTime\", \"date\" : \"date\", \"vehicleNumber\" : \"vehicleNumber\", \"driverName\" : \"driverName\", \"id\" : \"id\", \"outTime\" : \"outTime\", \"materialDescription\" : \"materialDescription\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    //==========================
+
     /**
      * GET /material/latestid : get-materials-list
      *
@@ -180,6 +304,51 @@ public interface MaterialApi {
 
     }
 
+    //==============================
+
+    /**
+     * GET /material/exitlatestid : get-materials-list
+     *
+     * @return OK (status code 200)
+     */
+    @Operation(
+            operationId = "getExitMaterialLatestId",
+            summary = "get-exit-materials-list",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "OK", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = MaterialDetails.class))
+                    })
+            }
+    )
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/material/exitlatestid",
+            produces = { "application/json" }
+    )
+    default ResponseEntity<String> _getExitMaterialLatestId(
+
+    ) {
+        return getExitMaterialLatestId();
+    }
+
+    // Override this method
+    default  ResponseEntity<String> getExitMaterialLatestId() {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"materialDocument\" : \"materialDocument\", \"inTime\" : \"inTime\", \"date\" : \"date\", \"vehicleNumber\" : \"vehicleNumber\", \"driverName\" : \"driverName\", \"id\" : \"id\", \"outTime\" : \"outTime\", \"materialDescription\" : \"materialDescription\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+
+    //=============================
 
     /**
      * GET /material/{id} : get-material
@@ -283,5 +452,40 @@ public interface MaterialApi {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
+
+
+    //=========================
+    /**
+     * POST /material/exit : new-material
+     *
+     * @param materialDetails  (optional)
+     * @return OK (status code 200)
+     */
+    @Operation(
+            operationId = "postExitMaterial",
+            summary = "new-exit-material",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "OK")
+            }
+    )
+    @RequestMapping(
+            method = RequestMethod.POST,
+            value = "/material/exit",
+            consumes = { "application/json" }
+    )
+    default ResponseEntity<Void> _postExitMaterial(
+            @Parameter(name = "MaterialDetails", description = "") @Valid @RequestBody(required = false) ExitMaterialInfo materialDetails
+    ) {
+        return postExitMaterial(materialDetails);
+    }
+
+    // Override this method
+    default  ResponseEntity<Void> postExitMaterial(ExitMaterialInfo materialDetails) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    //============================
 
 }

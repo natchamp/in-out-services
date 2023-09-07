@@ -1,8 +1,10 @@
 package com.inout.in.service;
 
+import com.inout.in.entity.ExitMaterialInfo;
 import com.inout.in.entity.MaterialInfo;
 import com.inout.in.generateddomain.service.dto.MaterialDetails;
 import com.inout.in.mapper.MaterialMapper;
+import com.inout.in.repository.ExitMaterialRepository;
 import com.inout.in.repository.MaterialRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +21,9 @@ public class MaterialService implements IMaterialService{
 
     @Autowired
     private MaterialRepository repository;
+
+    @Autowired
+    private ExitMaterialRepository exitrepository;
 
     private Logger log = LoggerFactory.getLogger(MaterialService.class);
 
@@ -71,6 +76,45 @@ public class MaterialService implements IMaterialService{
         int count = Math.toIntExact(repository.removeByDriverNameAndInTime(materialDetails.getDriverName(), materialDetails.getInTime()));
         if(count>=1){
             log.info("Material Deleted Successfully.....");
+            return count;
+        }
+        else
+        {
+            log.info("Something Went Wrong..");
+        }
+        return 0;
+    }
+
+//---------------------Exit Material
+
+
+    public List<ExitMaterialInfo> getExitMaterialAll(){
+        List<ExitMaterialInfo> materialList = exitrepository.findAll();
+        log.info("Exit Material Details Fetched Successfully.....");
+        return materialList;
+    }
+
+    public List<ExitMaterialInfo> getExitMaterialLatest(){
+        List<ExitMaterialInfo> materialList = exitrepository.findTop30ByOrderByIdDesc();
+        log.info("Latest Exit Material Details Fetched Successfully.....");
+        return materialList;
+    }
+
+    public int getExitMaterialLatestId(){
+        ExitMaterialInfo info = exitrepository.findTop1ByOrderByIdDesc();
+        return info.getId().intValue();
+    }
+
+    public void postExitMaterial(ExitMaterialInfo materialDetails){
+        exitrepository.save(materialDetails);
+        log.info("Exit Material Details Added Successfully.....(Service)");
+    }
+
+    @Transactional
+    public int deleteExitMaterialId(ExitMaterialInfo materialDetails){
+        int count = Math.toIntExact(exitrepository.removeByPickupPersonNameAndOutTime(materialDetails.getPickupPersonName(), materialDetails.getOutTime()));
+        if(count>=1){
+            log.info("Exit Material Deleted Successfully.....");
             return count;
         }
         else
