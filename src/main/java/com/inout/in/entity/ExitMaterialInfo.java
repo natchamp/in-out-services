@@ -1,5 +1,6 @@
 package com.inout.in.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -25,6 +26,9 @@ public class ExitMaterialInfo {
     @Lob
     @Column(name = "materialDocument")
     private String materialDocument;
+
+    @JsonProperty("vehicleNumber")
+    private String vehicleNumber;
 
     @Column(name = "outTime")
     private String outTime;

@@ -8,11 +8,14 @@ import com.inout.in.web.api.VisitorApi;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -39,6 +42,22 @@ public class VisitorController implements VisitorApi {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);*/
 
         List<PersonDetails> visitorList = visitorService.getVisitorAll();
+
+        //------------------
+        /*try {
+            byte[] excelBytes = visitorService.exportVisitorDataToExcel(visitorList);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        headers.setContentDispositionFormData("attachment", "data.xlsx");*/
+
+       // return ResponseEntity.ok().headers(headers).body(excelBytes);
+
+        //-------------------
+
         log.info("Visitor List Returned Successfully.....");
         return new ResponseEntity<>(visitorList, HttpStatus.OK);
 

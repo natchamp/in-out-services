@@ -5,12 +5,18 @@ import com.inout.in.generateddomain.service.dto.MaterialDetails;
 import com.inout.in.generateddomain.service.dto.PersonDetails;
 import com.inout.in.mapper.VisitorMapper;
 import com.inout.in.repository.VisitorRepository;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -33,6 +39,33 @@ public class VisitorService implements IVisitorService{
         return  visitorList;
     }
 
+   /* public byte[] exportVisitorDataToExcel(List<PersonDetails> dataList) throws IOException {
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet("DataSheet");
+
+            // Create header row
+            Row headerRow = sheet.createRow(0);
+            headerRow.createCell(0).setCellValue("ID");
+            headerRow.createCell(1).setCellValue("Name");
+            headerRow.createCell(2).setCellValue("Value");
+
+            // Populate data rows
+            int rowNum = 1;
+            for (PersonDetails data : dataList) {
+                Row row = sheet.createRow(rowNum++);
+                row.createCell(0).setCellValue(data.getId());
+                row.createCell(1).setCellValue(data.getName());
+                //row.createCell(2).setCellValue(data.getValue());
+            }
+
+            // Write the workbook to a ByteArrayOutputStream
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            workbook.write(outputStream);
+
+            return outputStream.toByteArray();
+        }
+    }
+*/
     @Override
     public List<PersonDetails> getVisitorLatest() {
         List<PersonDetails> visitorList = repository.findTop30ByOrderByIdDesc().stream()
