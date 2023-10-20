@@ -2,6 +2,7 @@ package com.inout.in.entity;
 
 import lombok.Data;
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="material_info")
@@ -37,4 +38,7 @@ public class MaterialInfo {
     @Lob
     @Column(name ="photo")
     private String photo;
+
+    @Column(name = "created_on")
+    private Date createdOn;
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="exit_material_info")
@@ -39,4 +40,7 @@ public class ExitMaterialInfo {
     @Lob
     @Column(name ="photo")
     private String photo;
+
+    @Column(name = "created_on")
+    private Date createdOn;
 }

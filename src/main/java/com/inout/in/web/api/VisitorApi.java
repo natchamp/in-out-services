@@ -16,6 +16,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -75,13 +76,14 @@ public interface VisitorApi {
             produces = { "application/json" }
     )
     default ResponseEntity<List<PersonDetails>> _getVisitorAll(
-
+            @RequestParam(name="startDate", required = true) String startDate,
+            @RequestParam(name="endDate", required = true) String endDate
     ) {
-        return getVisitorAll();
+        return getVisitorAll(startDate, endDate);
     }
 
     // Override this method
-    default  ResponseEntity<List<PersonDetails>> getVisitorAll() {
+    default  ResponseEntity<List<PersonDetails>> getVisitorAll(String starDate, String endDate) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -157,7 +159,7 @@ public interface VisitorApi {
     )
     default ResponseEntity<String> _getVisitorLatestId(
 
-    ) {
+            ) {
         return getVisitorLatestId();
     }
 

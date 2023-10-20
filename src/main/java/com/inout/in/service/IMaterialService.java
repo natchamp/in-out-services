@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IMaterialService {
 
-    List<MaterialDetails> getMaterialAll();
+    List<MaterialDetails> getMaterialAll(String startDate, String endDate);
 
     List<MaterialDetails> getMaterialLatest();
 

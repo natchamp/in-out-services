@@ -4,6 +4,10 @@ import com.inout.in.entity.VisitorInfo;
 import com.inout.in.generateddomain.service.dto.PersonDetails;
 import org.modelmapper.ModelMapper;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Date;
+
 public class VisitorMapper {
 
     public static VisitorInfo getVisitorInfoDTO (PersonDetails personDetails) {
@@ -11,6 +15,7 @@ public class VisitorMapper {
         mapper.typeMap(PersonDetails.class, VisitorInfo.class);
         VisitorInfo visitorInfo = mapper.map(personDetails,VisitorInfo.class);
         //visitorInfo.setId(UUID.randomUUID().toString());
+        visitorInfo.setCreatedOn(new Date(Timestamp.valueOf(LocalDateTime.now()).getTime()));
         return visitorInfo;
     }
 

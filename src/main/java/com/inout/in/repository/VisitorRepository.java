@@ -4,6 +4,8 @@ import com.inout.in.entity.VisitorInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,4 +23,6 @@ public interface VisitorRepository extends JpaRepository<VisitorInfo, Long> {
     List<VisitorInfo> findTop30ByOrderByIdDesc();
 
     VisitorInfo findTop1ByOrderByIdDesc();
+
+    Optional<List<VisitorInfo>> findByCreatedOnBetween(Date startCreatedOn, Date endCreatedOn);
 }

@@ -10,10 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
 
 import javax.validation.Valid;
@@ -81,13 +78,14 @@ public interface EmployeeApi {
             produces = { "application/json" }
     )
     default ResponseEntity<List<EmployeeDetails>> _getEmployeeAll(
-
+            @RequestParam(name="startDate", required = true) String startDate,
+            @RequestParam(name="endDate", required = true) String endDate
     ) {
-        return getEmployeeAll();
+        return getEmployeeAll(startDate, endDate);
     }
 
     // Override this method
-    default  ResponseEntity<List<EmployeeDetails>> getEmployeeAll() {
+    default  ResponseEntity<List<EmployeeDetails>> getEmployeeAll(String startDate, String endDate) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

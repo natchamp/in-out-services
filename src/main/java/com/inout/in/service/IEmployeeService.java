@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IEmployeeService {
 
-    List<EmployeeDetails> getEmployeeAll();
+    List<EmployeeDetails> getEmployeeAll(String startDate, String endDate);
 
     List<EmployeeDetails> getEmployeeAllLatest();
 

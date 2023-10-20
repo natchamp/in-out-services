@@ -23,8 +23,8 @@ public class EmployeeController implements EmployeeApi {
     private Logger log = LoggerFactory.getLogger(EmployeeController.class);
 
     @Override
-    public ResponseEntity<List<EmployeeDetails>> getEmployeeAll() {
-        List<EmployeeDetails> employeeList = employeeService.getEmployeeAll();
+    public ResponseEntity<List<EmployeeDetails>> getEmployeeAll(String startDate, String endDate) {
+        List<EmployeeDetails> employeeList = employeeService.getEmployeeAll(startDate, endDate);
         return new ResponseEntity<>(employeeList, HttpStatus.OK);
 
     }

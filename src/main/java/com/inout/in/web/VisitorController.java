@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -32,7 +33,7 @@ public class VisitorController implements VisitorApi {
     private Logger log = LoggerFactory.getLogger(VisitorController.class);
 
     @Override
-    public ResponseEntity<List<PersonDetails>> getVisitorAll() {
+    public ResponseEntity<List<PersonDetails>> getVisitorAll(String startDate, String endDate) {
         /*SubscribeRequest request = new SubscribeRequest(topic,"email","rohitkhade7010@gmail.com");
         amazonSNSClient.subscribe(request);*/
 
@@ -41,7 +42,7 @@ public class VisitorController implements VisitorApi {
         amazonSNSClient.publish(request);
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);*/
 
-        List<PersonDetails> visitorList = visitorService.getVisitorAll();
+        List<PersonDetails> visitorList = visitorService.getVisitorAll(startDate, endDate);
 
         //------------------
         /*try {

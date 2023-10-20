@@ -17,6 +17,10 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -32,10 +36,31 @@ public class VisitorService implements IVisitorService{
     private Logger log = LoggerFactory.getLogger(VisitorService.class);
 
     @Override
-    public List<PersonDetails> getVisitorAll() {
-        List<PersonDetails> visitorList = repository.findAll().stream()
+    public List<PersonDetails> getVisitorAll(String startDate, String endDate) {
+        /*List<PersonDetails> visitorList = repository.findAll().stream()
+                .map(data -> VisitorMapper.getPersonDetails(data))
+                .collect(Collectors.toList());*/
+
+        String pattern = "yyyy-MM-dd HH:mm:ss.SSSSSS";
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+
+        Date startDate1=new Date();
+        Date endDate1=new Date();
+
+        try {
+            startDate1 = sdf.parse(startDate);
+            endDate1 = sdf.parse(endDate);
+            log.info("Start Date : "+startDate1+" End Date : "+endDate1);
+        } catch (ParseException e) {
+            //e.printStackTrace();
+            log.info("Error While Fetching Visitor Data.....");
+        }
+
+        log.info("Start Date : "+startDate + " End Date : "+endDate);
+        List<PersonDetails> visitorList = repository.findByCreatedOnBetween(startDate1, endDate1).get().stream()
                 .map(data -> VisitorMapper.getPersonDetails(data))
                 .collect(Collectors.toList());
+        log.info(visitorList.size() + " Visitor Records Returned...");
         return  visitorList;
     }
 
@@ -109,7 +134,7 @@ public class VisitorService implements IVisitorService{
         repository.save(visitorInfo);
 
         //---------------whatsapp logic-------------
-        whatsAppMsgService.sendWhatsappMessage(personDetails.getWhomToMeet(), personDetails.getName());
+        //whatsAppMsgService.sendWhatsappMessage(personDetails.getWhomToMeet(), personDetails.getName());
 
         //----------------------------------
         log.info("Visitor Added Successfully.....(Service)");

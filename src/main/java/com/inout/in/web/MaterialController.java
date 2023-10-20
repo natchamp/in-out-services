@@ -24,8 +24,8 @@ public class MaterialController implements MaterialApi {
     private Logger log = LoggerFactory.getLogger(MaterialController.class);
 
     @Override
-    public ResponseEntity<List<MaterialDetails>> getMaterialAll() {
-        List<MaterialDetails> materialList = materialService.getMaterialAll();
+    public ResponseEntity<List<MaterialDetails>> getMaterialAll(String startDate, String endDate) {
+        List<MaterialDetails> materialList = materialService.getMaterialAll(startDate, endDate);
         log.info("Material Details Returned Successfully.....");
         return new ResponseEntity<>(materialList, HttpStatus.OK);
     }
@@ -112,8 +112,8 @@ public class MaterialController implements MaterialApi {
     }
 
     @Override
-    public ResponseEntity<List<ExitMaterialInfo>> getExitMaterialAll() {
-        List<ExitMaterialInfo> materialList = materialService.getExitMaterialAll();
+    public ResponseEntity<List<ExitMaterialInfo>> getExitMaterialAll(String startDate, String endDate) {
+        List<ExitMaterialInfo> materialList = materialService.getExitMaterialAll(startDate, endDate);
         log.info("Exit Material Details Returned Successfully.....");
         return new ResponseEntity<>(materialList, HttpStatus.OK);
     }
